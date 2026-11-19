@@ -94,7 +94,11 @@ h1 { font-weight: 600; font-size: clamp(44px, 8vw, 104px); line-height: .95; let
 .year:first-child { margin-top: var(--s8); }
 .year-head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s2); border-bottom: 2px solid var(--ink); padding-bottom: var(--s1); }
 .year-head h2 { margin: 0; font-size: 28px; font-weight: 600; letter-spacing: -0.015em; }
-.year-head span { color: var(--muted); font-size: 15px; }
+.year-head > span { color: var(--muted); font-size: 15px; }
+.dl { font-size: 15px; font-weight: 600; text-decoration: none; border: 1px solid var(--ink); border-radius: var(--r); padding: 6px 12px; white-space: nowrap; }
+.dl span { font-weight: 400; color: var(--muted); }
+.dl:hover { background: var(--ink); color: var(--paper); }
+.dl:hover span { color: inherit; }
 
 .row {
   display: grid; grid-template-columns: 112px minmax(0, 1fr) 176px 128px; gap: var(--s4); align-items: center;
@@ -155,10 +159,11 @@ body { padding-bottom: var(--s8); }
   .hero { padding-top: var(--s4); }
   .hero-body { grid-template-columns: 1fr; gap: var(--s4); }
   .top nav a { display: none; }
-  .row { grid-template-columns: 52px minmax(0, 1fr); gap: var(--s1) var(--s2); padding: var(--s3) 0; align-items: start; }
-  .num { font-size: 36px; }
-  .row h3 { font-size: 19px; }
-  .fig { grid-row: auto; grid-column: 2; width: 100%; max-width: 200px; height: auto; margin: var(--s1) 0; }
+  .row { grid-template-columns: 44px minmax(0, 1fr) 72px; gap: var(--s1) var(--s2); padding: var(--s3) 0; align-items: start; }
+  .num { font-size: 32px; }
+  .row h3 { font-size: 18px; }
+  .fig { grid-row: 1 / span 2; grid-column: 3; width: 72px; height: 45px; margin-top: 4px; }
+  .fig text { display: none; }
   .coffee { grid-template-columns: 1fr; gap: var(--s2); }
   .coffee svg { display: none; }
   .coffee .btn { grid-column: 1; }
@@ -214,7 +219,7 @@ body { padding-bottom: var(--s8); }
       <h2>Did these help?</h2>
       <p>Hiii! If you found these notes useful, consider buying me a coffee. No pressure at all, the notes will always be free.</p>
     </div>
-    <a class="btn" href="https://buy.stripe.com/14AcN68I169Z6CO9bU3oA00" target="_blank" rel="noopener">Buy me a coffee</a>
+    <a class="btn" href="https://buymeacoffee.com/chilapilli" target="_blank" rel="noopener">Buy me a coffee</a>
   </section>
 
   <footer>
@@ -263,8 +268,8 @@ const NOTES = [
 ];
 
 const YEARS = [
-  { id: 1, name: "Year 1 (AS)" },
-  { id: 2, name: "Year 2 (A2)" },
+  { id: 1, name: "Year 1 (AS)", zip: "notes/year-1-as.zip", zipSize: "15 MB" },
+  { id: 2, name: "Year 2 (A2)", zip: "notes/year-2-a2.zip", zipSize: "10 MB" },
   { id: 0, name: "Extra" }
 ];
 
@@ -390,7 +395,9 @@ function render(query) {
     }).join("");
     return count ? `
       <section class="year">
-        <div class="year-head"><h2>${esc(y.name)}</h2><span>${count} ${count === 1 ? "set" : "sets"}</span></div>
+        <div class="year-head"><h2>${esc(y.name)}</h2>${y.zip
+          ? `<a class="dl" href="${y.zip}" download>Download all ${count === NOTES.filter(n => n.year === y.id).length ? "" : "(whole year) "}<span>.zip · ${y.zipSize}</span></a>`
+          : `<span>${count} ${count === 1 ? "set" : "sets"}</span>`}</div>
         ${rows}
       </section>` : "";
   }).join("");
@@ -405,6 +412,12 @@ document.getElementById("trace").innerHTML =
 
 // Address is assembled in the browser so simple scrapers reading the HTML don't pick it up.
 document.getElementById("mail").href = "mailto:" + ["chilaptsang", "gmail.com"].join("@") + "?subject=" + encodeURIComponent("A-Level Physics Notes");
+
+// "Download all": the zip downloads here, and the coffee page opens in a new tab as a thank-you nudge.
+const COFFEE = "https://buymeacoffee.com/chilapilli";
+main.addEventListener("click", e => {
+  if (e.target.closest(".dl")) window.open(COFFEE, "_blank", "noopener");
+});
 
 const q = document.getElementById("q");
 const params = new URLSearchParams(location.search);
