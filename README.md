@@ -41,7 +41,7 @@
 
 ## 👋 About me
 
-Hi, I'm Matthew. I'm in my second year studying Maths at UCL. These are the physics notes I wrote during my time at Dame Alice Owens School. They're matched to the AQA A-Level Physics specification, section by section. Hope they help!
+Hi, I'm Matthew! These are the physics notes I wrote during my time at sixth form. They're matched to the AQA A-Level Physics specification, section by section. Hope they help!
 
 [GitHub](https://github.com/chilapilli) · [LinkedIn](https://www.linkedin.com/in/matthewtsang056)
 

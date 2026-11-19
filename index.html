@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>A-Level Physics Notes (AQA) | Free, Specification-Matched</title>
-<meta name="description" content="Free AQA A-Level Physics notes matched to the specification: particles, waves, mechanics, electricity, SHM, thermal physics, fields, nuclear physics and Turning Points. Read them as PDFs.">
+<title>A-Level Physics Notes for the A* (AQA) | Free, In-Depth, with Exercises</title>
+<meta name="description" content="Free, in-depth AQA A-Level Physics notes for students aiming for an A*, with exercises throughout. Matched to the specification: particles, waves, mechanics, electricity, SHM, thermal physics, fields, nuclear physics and Turning Points. Read them as PDFs.">
 <meta name="author" content="Matthew">
 <link rel="canonical" href="https://chilapilli.github.io/a-level-physics-notes/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="A-Level Physics Notes (AQA)">
+<meta property="og:title" content="A-Level Physics Notes for the A* (AQA)">
 <meta property="og:description" content="Free AQA A-Level Physics notes, matched to the specification. Read them as PDFs.">
 <meta property="og:url" content="https://chilapilli.github.io/a-level-physics-notes/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='10' fill='%23f2efe6'/><path d='M8 32c5-20 11-20 16 0s11 16 16 0 9-10 16 0' fill='none' stroke='%23e2471f' stroke-width='5' stroke-linecap='round'/></svg>">
@@ -74,10 +74,17 @@ a { color: inherit; text-underline-offset: 3px; text-decoration-thickness: 1px; 
 
 /* hero */
 .hero { padding-top: var(--s8); }
-h1 { font-weight: 600; font-size: clamp(44px, 8vw, 104px); line-height: .95; letter-spacing: -0.035em; margin: 0; max-width: 10ch; }
+h1 { font-weight: 600; font-size: clamp(44px, 8vw, 104px); line-height: .95; letter-spacing: -0.035em; margin: 0; max-width: 12ch; }
 .hero-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--s6); margin-top: var(--s6); align-items: end; }
 .intro p { margin: 0 0 var(--s2); max-width: 52ch; }
-.intro p:last-child { margin-bottom: 0; color: var(--muted); }
+.intro > p:last-of-type { color: var(--muted); }
+.about { margin-top: var(--s3); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); max-width: 52ch; }
+.about summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; padding: 12px 0; font-weight: 600; }
+.about summary::-webkit-details-marker { display: none; }
+.about summary::after { content: "+"; font-size: 22px; font-weight: 400; line-height: 1; color: var(--accent); }
+.about[open] summary::after { content: "−"; }
+.about summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.about p { margin: 0 0 var(--s2); }
 .field { display: block; position: relative; }
 .field svg { position: absolute; left: var(--s2); top: 50%; transform: translateY(-50%); color: var(--muted); }
 .field input {
@@ -101,7 +108,7 @@ h1 { font-weight: 600; font-size: clamp(44px, 8vw, 104px); line-height: .95; let
 .dl:hover span { color: inherit; }
 
 .row {
-  display: grid; grid-template-columns: 112px minmax(0, 1fr) 176px 128px; gap: var(--s4); align-items: center;
+  display: grid; grid-template-columns: 112px minmax(0, 1fr) 176px 144px; gap: var(--s4); align-items: center;
   padding: var(--s4) 0; border-bottom: 1px solid var(--rule); text-decoration: none; color: inherit;
 }
 .num { font-size: 64px; font-weight: 600; line-height: 1; letter-spacing: -0.04em; transition: color .15s; }
@@ -187,12 +194,17 @@ body { padding-bottom: var(--s8); }
   </header>
 
   <section class="hero">
-    <h1>A-Level Physics Notes</h1>
+    <h1>A-Level Physics Notes for the A*</h1>
     <div class="hero-body">
       <div class="intro">
-        <p>Hi, I'm Matthew!</p>
-        <p>These are the physics notes I wrote during my time at Dame Alice Owens School. They're matched to the AQA A-Level Physics specification, section by section. Feel free to use them alongside your own studies for free!</p>
+        <p>I got an A* in A-Level Physics (208/250, 2025 series), and these are the notes I wrote at sixth form.</p>
+        <p>They're matched to the AQA A-Level Physics specification, section by section. Feel free to use them alongside your own studies for free!</p>
         <p>Each set opens as a PDF. Hope they help, and good luck with your exams!</p>
+        <details class="about">
+          <summary>About these notes</summary>
+          <p>These notes are much more detailed than the PMT (Physics &amp; Maths Tutor) ones, and they're aimed at students going for an A*.</p>
+          <p>There are exercises dotted throughout. You'll get a lot more out of the notes if you work through the exercises as you go, rather than just reading.</p>
+        </details>
       </div>
       <div>
         <label class="field">
@@ -223,7 +235,7 @@ body { padding-bottom: var(--s8); }
   </section>
 
   <footer>
-    <span>Sincerely, Matthew</span>
+    <span>All the best, Matthew</span>
     <span><a href="https://github.com/chilapilli">GitHub</a> · <a href="https://www.linkedin.com/in/matthewtsang056">LinkedIn</a></span>
   </footer>
 </div>
@@ -362,11 +374,11 @@ const hl = (text, terms) => {
   return out.replace(re, "<mark>$1</mark>");
 };
 
-// About 3 minutes per page of dense notes; the one-page worked question takes longer than its length suggests.
-const readTime = n => {
-  const m = n.pdfOnly ? 10 : Math.round(n.pages * 3 / 5) * 5;
-  return m < 60 ? `${m} min` : `${Math.floor(m / 60)} hr${m % 60 ? ` ${m % 60} min` : ""}`;
-};
+// Estimates: about 3 min reading and 2 min of exercises per page. The one-page challenge question is mostly exercise.
+const fmt = m => m < 60 ? `${m} min` : `${Math.floor(m / 60)} hr${m % 60 ? ` ${m % 60} min` : ""}`;
+const round5 = m => Math.max(5, Math.round(m / 5) * 5);
+const readTime = n => fmt(n.pdfOnly ? 10 : round5(n.pages * 3));
+const exerciseTime = n => fmt(n.pdfOnly ? 30 : round5(n.pages * 2));
 
 const main = document.getElementById("notes");
 
@@ -390,7 +402,7 @@ function render(query) {
           ${hits.length ? `<div class="matched">Covers: ${hits.slice(0, 6).map(t => hl(t, terms)).join(", ")}</div>` : ""}
         </div>
         ${FIGS[num] ? FIGS[num]() : ""}
-        <div class="meta"><b>Open PDF</b><span>~${readTime(n)} read</span><span>${n.pages} ${n.pages === 1 ? "page" : "pages"} · ${esc(n.size)}</span></div>
+        <div class="meta"><b>Open PDF</b><span>~${readTime(n)} read</span><span>~${exerciseTime(n)} exercises</span><span>${n.pages} ${n.pages === 1 ? "page" : "pages"} · ${esc(n.size)}</span></div>
       </a>`;
     }).join("");
     return count ? `
