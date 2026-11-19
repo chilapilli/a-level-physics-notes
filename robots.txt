@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://chilapilli.github.io/a-level-physics-notes/sitemap.xml
